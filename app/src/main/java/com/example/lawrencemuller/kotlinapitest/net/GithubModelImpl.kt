@@ -8,7 +8,7 @@ import javax.inject.Inject
 /**
  * Created by Jonathan Muller on 8/31/16.
  */
-class GithubProvider {
+class GithubModelImpl : GithubModel {
 
     @Inject
     lateinit var mGithubService : GithubService
@@ -17,7 +17,7 @@ class GithubProvider {
         MyApp.mNetworkComponent.inject(this)
     }
 
-    fun getRepo(username: String) : Observable<Repo> {
+    override fun getRepo(username: String) : Observable<Repo> {
         return mGithubService.getUser(username)
                 .subscribeOn(Schedulers.io())
                 .flatMap { Observable.from(it) }

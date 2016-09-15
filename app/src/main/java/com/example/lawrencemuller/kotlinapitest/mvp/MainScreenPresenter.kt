@@ -2,7 +2,7 @@ package com.example.lawrencemuller.kotlinapitest.mvp
 
 import android.util.Log
 import com.example.lawrencemuller.kotlinapitest.MyApp
-import com.example.lawrencemuller.kotlinapitest.net.GithubProvider
+import com.example.lawrencemuller.kotlinapitest.net.GithubModel
 import rx.android.schedulers.AndroidSchedulers
 import javax.inject.Inject
 
@@ -14,7 +14,7 @@ class MainScreenPresenter: MainScreenMvp.Presenter {
     var view: MainScreenMvp.View? = null
 
     @Inject
-    lateinit var mGithubProvider : GithubProvider
+    lateinit var mGithubModel : GithubModel
 
     init {
         MyApp.mNetworkComponent.inject(this)
@@ -25,7 +25,7 @@ class MainScreenPresenter: MainScreenMvp.Presenter {
     }
 
     override fun getData() {
-        mGithubProvider.getRepo("elforama")
+        mGithubModel.getRepo("elforama")
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(
                         { view?.onDataLoaded(it?.toString()) },

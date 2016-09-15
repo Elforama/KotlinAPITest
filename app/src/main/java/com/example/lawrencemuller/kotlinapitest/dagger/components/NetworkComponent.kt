@@ -4,7 +4,7 @@ import com.example.lawrencemuller.kotlinapitest.dagger.modules.BackendModule
 import com.example.lawrencemuller.kotlinapitest.dagger.modules.GithubModule
 import com.example.lawrencemuller.kotlinapitest.dagger.modules.RetrofitModule
 import com.example.lawrencemuller.kotlinapitest.mvp.MainScreenPresenter
-import com.example.lawrencemuller.kotlinapitest.net.GithubProvider
+import com.example.lawrencemuller.kotlinapitest.net.GithubModelImpl
 import dagger.Component
 import javax.inject.Singleton
 
@@ -14,6 +14,6 @@ import javax.inject.Singleton
 @Singleton
 @Component(modules = arrayOf(GithubModule::class, RetrofitModule::class, BackendModule::class))
 interface NetworkComponent {
-    fun inject(githubProvider: GithubProvider)
+    fun inject(githubModelImpl: GithubModelImpl)
     fun inject(presenter: MainScreenPresenter)
 }
