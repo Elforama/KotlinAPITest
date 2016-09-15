@@ -4,7 +4,6 @@ import android.app.Application
 import com.example.lawrencemuller.kotlinapitest.dagger.components.ApplicationComponent
 import com.example.lawrencemuller.kotlinapitest.dagger.components.DaggerApplicationComponent
 import com.example.lawrencemuller.kotlinapitest.dagger.components.DaggerNetworkComponent
-
 import com.example.lawrencemuller.kotlinapitest.dagger.components.NetworkComponent
 import com.example.lawrencemuller.kotlinapitest.dagger.modules.ApplicationModule
 import com.example.lawrencemuller.kotlinapitest.dagger.modules.GithubModule
@@ -22,8 +21,6 @@ class MyApp : Application() {
         @JvmStatic lateinit var instance: Application
         @JvmStatic lateinit var mNetworkComponent: NetworkComponent
         @JvmStatic lateinit var mAppComponent: ApplicationComponent
-
-        fun test(){}
     }
 
     override fun onCreate() {
@@ -35,11 +32,9 @@ class MyApp : Application() {
         .applicationModule(ApplicationModule(this))
         .build()
 
-
         mNetworkComponent = DaggerNetworkComponent.builder()
         .githubModule(GithubModule())
         .retrofitModule(RetrofitModule(Constants.ENDPOINT_BASE))
         .build()
-
     }
 }
