@@ -5,5 +5,4 @@ package com.example.lawrencemuller.kotlinapitest.net
  */
 object Constants {
     val ENDPOINT_BASE: String = "https://api.github.com/"
-    val GET_USER_ENDPOINT = "/users/"
 }

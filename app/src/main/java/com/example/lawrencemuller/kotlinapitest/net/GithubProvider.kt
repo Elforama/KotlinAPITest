@@ -1,22 +1,26 @@
 package com.example.lawrencemuller.kotlinapitest.net
 
-import retrofit2.Retrofit
-import retrofit2.adapter.rxjava.RxJavaCallAdapterFactory
-import retrofit2.converter.gson.GsonConverterFactory
+import com.example.lawrencemuller.kotlinapitest.MyApp
+import rx.Observable
+import rx.schedulers.Schedulers
+import javax.inject.Inject
 
 /**
  * Created by Jonathan Muller on 8/31/16.
  */
 class GithubProvider {
 
-    val githubService: GithubService
+    @Inject
+    lateinit var mGithubService : GithubService
 
     init {
-        githubService = Retrofit.Builder()
-                .baseUrl(Constants.ENDPOINT_BASE)
-                .addConverterFactory(GsonConverterFactory.create())
-                .addCallAdapterFactory(RxJavaCallAdapterFactory.create())
-                .build()
-                .create(GithubService::class.java)
+        MyApp.mNetworkComponent.inject(this)
+    }
+
+    fun getRepo(username: String) : Observable<Repo> {
+        return mGithubService.getUser(username)
+                .subscribeOn(Schedulers.io())
+                .flatMap { Observable.from(it) }
+                .first()
     }
 }
