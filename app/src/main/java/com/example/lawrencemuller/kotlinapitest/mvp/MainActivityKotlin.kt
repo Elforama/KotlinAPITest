@@ -1,7 +1,8 @@
 package com.example.lawrencemuller.kotlinapitest.mvp
 
-import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
+import android.support.v7.app.AppCompatActivity
+import com.example.lawrencemuller.kotlinapitest.KotlinExamples
 import com.example.lawrencemuller.kotlinapitest.R
 
 class MainActivityKotlin : AppCompatActivity() {
@@ -13,6 +14,8 @@ class MainActivityKotlin : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main_activity_kotlin)
         view = MainScreenView(findViewById(R.id.baseView), presenter)
+
+        KotlinExamples("Word")
     }
 
     override fun onResume() {
